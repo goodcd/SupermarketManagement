@@ -1,11 +1,21 @@
 package com.cs.main;
 
 public class Main {
+	boolean packFrame = false;
+	//构造函数
+	public Main() {
+		// TODO Auto-generated constructor stub
+		MainFrame frame = new MainFrame();
+		if (packFrame) {
+			frame.pack();		//让窗口显示合适的大小
+		} else {
+			frame.validate();	//刷新窗体组件的信息
+		}
+	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println("第一个工程");
-		MainFrame newFrame = new MainFrame();
+		new Main();
 	}
 
 }
