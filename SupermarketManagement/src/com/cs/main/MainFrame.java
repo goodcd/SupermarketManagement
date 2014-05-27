@@ -57,10 +57,10 @@ public class MainFrame extends JFrame{
 	/*定义树形*/
 	JTree jTree1 = new JTree();
 	JLabel statusBar = new JLabel();//表格展示区域
-	JScrollPane jScrollPane1 = new JScrollPane();
+	JScrollPane jScrollPane1 = new JScrollPane();	//带有滚动条的区域
 	JScrollPane jScrollPane2 = new JScrollPane();
-	JTable jTable = new JTable();
-	
+	JTable jTable = new JTable();					//表格
+		
 	TitledBorder titledBorder = new TitledBorder("");
 	
 	
@@ -68,7 +68,7 @@ public class MainFrame extends JFrame{
 		// TODO Auto-generated constructor stub
 		try {
 			setDefaultCloseOperation(EXIT_ON_CLOSE);
-			jbInit();
+			jbInit();			//自定义的窗体初始化函数
 		} catch (Exception exception) {
 			exception.printStackTrace();
 		}

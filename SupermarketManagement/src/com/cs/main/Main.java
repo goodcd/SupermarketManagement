@@ -1,5 +1,7 @@
 package com.cs.main;
 
+import com.cs.base.Business;
+
 public class Main {
 	boolean packFrame = false;
 	//¹¹Ôìº¯Êý
@@ -15,7 +17,8 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new Main();
+		Business business = new Business();
+		business.getConnection();
 	}
 
 }
