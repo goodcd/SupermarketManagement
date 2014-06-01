@@ -19,10 +19,10 @@ public class MainFrame extends JFrame{
 	JPanel contentPane;
 	/*定义菜单栏*/
 	JMenuBar jMenuBar1 = new JMenuBar();
-	JMenu jMenu1 = new JMenu();
-	JMenu jMenu2 = new JMenu();
-	JMenu jMenu3 = new JMenu();
-	JMenu jMenu4 = new JMenu();
+	JMenu jMenu1 = new JMenu();			//采购
+	JMenu jMenu2 = new JMenu();			//仓库
+	JMenu jMenu3 = new JMenu();			//
+	JMenu jMenu4 = new JMenu();			//用户管理
 	JMenu jMenu5 = new JMenu();
 	JMenu jMenu6 = new JMenu();
 	JMenu jMenu7 = new JMenu();
@@ -90,14 +90,14 @@ public class MainFrame extends JFrame{
 		
 		
 				
-		//整个页面的属性设置
+		/*//整个页面的属性设置
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = toolkit.getScreenSize();		//获取主显示器的大小，如1280*1024
 		//使得Frame窗口在屏幕居中显示
 		this.setLocation((screenSize.width - this.getWidth()) / 2,
-				(screenSize.height - this.getHeight()) / 2);
+				(screenSize.height - this.getHeight()) / 2);*/
 		
-		this.setVisible(true);
+		this.setVisible(true);			//使得窗口显示
 	}
 	
 }

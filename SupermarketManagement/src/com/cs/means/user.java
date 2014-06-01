@@ -2,7 +2,7 @@ package com.cs.means;
 
 public class user {
 	
-	//类成员
+	//类的成员变量
 	/*user表中的各个字段*/
 	private int CardID;
 	private String userName;
