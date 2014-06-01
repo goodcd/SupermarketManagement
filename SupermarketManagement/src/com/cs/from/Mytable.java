@@ -13,7 +13,7 @@ import javax.swing.JTable;
  */
 public class Mytable {
 	public static JTable maketable(Vector obj, Vector title) {
-		JTable jTable = new JTable(obj, title);
-		return null;
+		JTable table = new JTable(obj, title);
+		return table;
 	}
 }
