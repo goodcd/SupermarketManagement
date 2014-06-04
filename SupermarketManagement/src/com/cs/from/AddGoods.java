@@ -2,12 +2,15 @@ package com.cs.from;
 
 import java.awt.Frame;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -15,6 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.table.JTableHeader;
 
 public class AddGoods extends JDialog {
+	
 	//类的成员变量
 	JPanel panel1 = new JPanel();
 	JLabel jLabel1 = new JLabel();
@@ -112,15 +116,18 @@ public class AddGoods extends JDialog {
 	    
 		jButton1.setBounds(new Rectangle(53, 418, 127, 27));
 		jButton1.setText("添    加");				//设置添加按钮
+		jButton1.addActionListener(new AddMerchandise_jButton1_actionAdapter(this));
 		
 		jButton2.setBounds(new Rectangle(273, 418, 127, 27));
-		jButton2.setText("重    置");				//设置添加按钮
+		jButton2.setText("重    置");				//设置重置按钮
+		jButton2.addActionListener(new AddMerchandise_jButton2_actionAdapter(this));
 		
 		jButton3.setBounds(new Rectangle(493, 418, 127, 27));
-		jButton3.setText("删    除");				//设置添加按钮
+		jButton3.setText("删    除");				//设置删除按钮
+		jButton3.addActionListener(new AddMerchandise_jButton3_actionAdapter(this));
 		
 		jButton4.setBounds(new Rectangle(713, 418, 127, 27));
-		jButton4.setText("提    交");				//设置添加按钮
+		jButton4.setText("提    交");				//设置提交按钮
 		
 		
 		colnames.add("商品编码");		//向表格中添加表头信息
@@ -135,7 +142,7 @@ public class AddGoods extends JDialog {
 	    colnames.add("备注");
 	    colnames2.add(colnames1);
 	    jTable1 = Mytable.maketable(colnames2, colnames);
-	    jScrollPane1.getViewport().add(jTable1);
+//	    jScrollPane1.getViewport().add(jTable1);
 	    //初始化一个容器，并加入panel1
 		getContentPane().add(panel1);
 		//将页面的组件添加到窗口
@@ -165,4 +172,118 @@ public class AddGoods extends JDialog {
 		panel1.add(jComboBox1);
 		panel1.add(jScrollPane1);		
 	}
+	Vector addAllData = new Vector(); 		//所有商品的相关信息
+	//button1 的 功能：添加商品的信息到表格中
+	public void jButton1_actionPerformed(ActionEvent e) {
+		if ((jTextField1.getText().length() == 0) || 
+			(jTextField2.getText().length() == 0) ||
+			(jTextField4.getText().length() == 0) ||
+			(jTextField5.getText().length() == 0) ||
+			(jTextField6.getText().length() == 0) ||
+			(jTextField7.getText().length() == 0) ||
+			(jTextField8.getText().length() == 0) ||
+			(jTextField9.getText().length() == 0) ) {
+			JOptionPane.showMessageDialog(this, "提交的数据不合法，请检查", "提示", JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
+		try {
+			Double dj = new Double(jTextField5.getText());		//零售价：定价
+			Double jhj = new Double(jTextField8.getText());		//进货价
+			Double bzq = new Double(jTextField9.getText());		//保质期
+		} catch (Exception ex) {
+			// TODO: handle exception
+			JOptionPane.showMessageDialog(this, "提交的数据不合法，请检查", "提示", JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
+		Vector addData = new Vector();			//单个商品的相关信息
+		addData.add(jTextField1.getText());		//添加商品编码
+		addData.add(jTextField2.getText());		//添加条形码
+		if (jComboBox1.getSelectedItem().equals("生鲜类")) {
+			addData.add("SX1001");
+		}
+		if (jComboBox1.getSelectedItem().equals("食品类")) {
+			addData.add("SP1002");
+		}
+		if (jComboBox1.getSelectedItem().equals("蔬果类")) {
+			addData.add("SG1003");
+		}
+		if (jComboBox1.getSelectedItem().equals("电器类")) {
+			addData.add("DQ1004");
+		}
+		if (jComboBox1.getSelectedItem().equals("日用类")) {
+			addData.add("RY1005");
+		}
+		if (jComboBox1.getSelectedItem().equals("礼品类")) {
+			addData.add("LP1006");
+		}
+		addData.add(jTextField4.getText());		//添加名称
+		addData.add(jTextField5.getText());		//添加
+		addData.add(jTextField6.getText());		//添加商品规则
+		addData.add(jTextField7.getText());		//添加计量单位
+		addData.add(jTextField8.getText());		//添加进货价
+		addData.add(jTextField9.getText());		//添加保质期
+		addData.add(jTextField10.getText());	//添加备注
+		addAllData.add(addData);
+		jTable1 = Mytable.maketable(addAllData, colnames);		//显示内容
+		jScrollPane1.getViewport().add(jTable1);
+	}
+	public void jButton2_actionPerformed(ActionEvent e) {
+		addAllData.removeAllElements();
+		jTable1 = Mytable.maketable(addAllData, colnames);		//显示内容
+		jScrollPane1.getViewport().add(jTable1);
+	}
+	public void jButton3_actionPerformed(ActionEvent e) {
+		int row = jTable1.getSelectedRow();
+		addAllData.remove(row);
+		jTable1 = Mytable.maketable(addAllData, colnames);		//显示内容
+		jScrollPane1.getViewport().add(jTable1);
+	}
+	public void jButton4_actionPerformed(ActionEvent e) {
+		
+	}
+}
+
+class AddMerchandise_jButton1_actionAdapter implements ActionListener {
+	private AddGoods adaptee;
+    AddMerchandise_jButton1_actionAdapter(AddGoods adaptee) {
+        this.adaptee = adaptee;
+    }
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		adaptee.jButton1_actionPerformed(e);
+	}
+}
+
+class AddMerchandise_jButton2_actionAdapter implements ActionListener {
+    private AddGoods adaptee;
+    AddMerchandise_jButton2_actionAdapter(AddGoods adaptee) {
+        this.adaptee = adaptee;
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        adaptee.jButton2_actionPerformed(e);
+    }
+}
+
+class AddMerchandise_jButton3_actionAdapter implements ActionListener {
+    private AddGoods adaptee;
+    AddMerchandise_jButton3_actionAdapter(AddGoods adaptee) {
+        this.adaptee = adaptee;
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        adaptee.jButton3_actionPerformed(e);
+    }
+}
+
+class AddMerchandise_jButton4_actionAdapter implements ActionListener {
+    private AddGoods adaptee;
+    AddMerchandise_jButton4_actionAdapter(AddGoods adaptee) {
+        this.adaptee = adaptee;
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        adaptee.jButton4_actionPerformed(e);
+    }
 }
