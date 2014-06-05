@@ -56,8 +56,8 @@ public class PaymentList extends JDialog {
 		try {
 			//在Java窗体正常关闭时调用，同时将整个程序从内存中清除。
 			setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-			jbInit();		//窗口的初始化函数
-			pack();
+			jbInit();		//初始化界面
+			pack();			//刷新界面
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -65,33 +65,33 @@ public class PaymentList extends JDialog {
 	}
 	public PaymentList() {
 		// TODO Auto-generated constructor stub
-		this(new Frame(),"增加商品",false);
-		this.setSize(920, 500);
+		this(new Frame(),"付款界面",false);
+		this.setSize(800, 500);
 		this.setLocation(100, 100);
 		this.setVisible(true);			//显示窗口
 	}
 	private void jbInit() throws Exception {
 		panel1.setLayout(null); 				//设置布局为空
-		jLabel1.setText("商品编码：");				//设置商品编码名称大小和位置
-		jLabel1.setBounds(new Rectangle(15, 10, 85, 26));
-		jLabel2.setText("条  形  码：");				//设置条形码名称标签
-		jLabel2.setBounds(new Rectangle(15, 50, 85, 26));
-		jLabel3.setText("类别编号：");				//设置类别编号标签
-		jLabel3.setBounds(new Rectangle(15, 90, 85, 26));
-		jLabel4.setText("商品名称：");				//设置商品名称标签
-		jLabel4.setBounds(new Rectangle(15, 130, 85, 26));
-		jLabel5.setText("零售价(元)：");			//设置零售价标签
-		jLabel5.setBounds(new Rectangle(15, 170, 85, 26));
-		jLabel6.setText("商品规格：");				//设置商品规格标签
-		jLabel6.setBounds(new Rectangle(15, 210, 85, 26));
-		jLabel7.setText("计量单位：");				//设置计量单位标签
-		jLabel7.setBounds(new Rectangle(15, 250, 85, 26));
-		jLabel8.setText("进  货  价：");				//设置进货价标签
-		jLabel8.setBounds(new Rectangle(15, 290, 85, 26));
-		jLabel9.setText("保质期(天)：");			//设置保质期标签
-		jLabel9.setBounds(new Rectangle(15, 330, 85, 26));
-		jLabel10.setText("备   注 ：");				//设置备注标签
-		jLabel10.setBounds(new Rectangle(15, 370, 85, 26));
+		jLabel1.setText("单号：");				//设置单号
+		jLabel1.setBounds(new Rectangle(12, 64, 52, 18));
+		jLabel2.setText("供货商：");				//设置条形码名称标签
+		jLabel2.setBounds(new Rectangle(12,	104, 52, 18));
+		jLabel3.setText("货币：");				//设置类别编号标签
+		jLabel3.setBounds(new Rectangle(12, 144, 52, 18));
+		jLabel4.setText("付款金额：");				//设置商品名称标签
+		jLabel4.setBounds(new Rectangle(12, 192, 52, 18));
+		jLabel5.setText("付款方式：");			//设置零售价标签
+		jLabel5.setBounds(new Rectangle(12, 229, 52, 18));
+		jLabel6.setText("支票号：");				//设置商品规格标签
+		jLabel6.setBounds(new Rectangle(12, 269, 52, 18));
+		jLabel7.setText("日期");				//设置计量单位标签
+		jLabel7.setBounds(new Rectangle(12, 309, 52, 18));
+		jLabel8.setText("经手人：");				//设置进货价标签
+		jLabel8.setBounds(new Rectangle(12, 349, 52, 18));
+		jLabel9.setText("制单人：");			//设置保质期标签
+		jLabel9.setBounds(new Rectangle(12, 389, 52, 18));
+		jLabel10.setText("付款单");				//设置备注标签
+		jLabel10.setBounds(new Rectangle(43, 5, 146, 52));
 		//添加复选框
 		jComboBox1.addItem("生鲜类");
 		jComboBox1.addItem("食品类");
@@ -101,41 +101,39 @@ public class PaymentList extends JDialog {
 		jComboBox1.addItem("礼品类");
 		jComboBox1.setBounds(new Rectangle(91, 90, 125, 24));
 		
-		jTextField1.setBounds(new Rectangle(91, 10, 125, 24));		//设置选项文本框
-	    jTextField2.setBounds(new Rectangle(91, 50, 125, 24));
-	    jTextField4.setBounds(new Rectangle(91, 130, 125, 24));
-	    jTextField5.setBounds(new Rectangle(91, 170, 125, 24));
-	    jTextField6.setBounds(new Rectangle(91, 210, 125, 24));
-	    jTextField7.setBounds(new Rectangle(91, 250, 125, 24));
-	    jTextField8.setBounds(new Rectangle(91, 290, 125, 24));
-	    jTextField9.setBounds(new Rectangle(91, 330, 125, 24));
-	    jTextField10.setBounds(new Rectangle(91, 370, 125, 24));
+		jTextField1.setBounds(new Rectangle(51, 64, 149, 20));		//设置选项文本框
+	    jTextField2.setBounds(new Rectangle(60, 104, 149, 20));
+	    jTextField4.setBounds(new Rectangle(51, 144, 149, 20));
+	    jTextField5.setBounds(new Rectangle(51, 64, 149, 20));
+	    jTextField6.setBounds(new Rectangle(51, 64, 149, 20));
+	    jTextField7.setBounds(new Rectangle(51, 64, 149, 20));
+	    jTextField8.setBounds(new Rectangle(51, 64, 149, 20));
+	    jTextField9.setBounds(new Rectangle(51, 64, 149, 20));
+	    jTextField10.setBounds(new Rectangle(51, 64, 149, 20));
 	    
 	    jScrollPane1.setBounds(new Rectangle(228, 10, 658, 383));
 	    
-		jButton1.setBounds(new Rectangle(53, 418, 127, 27));
+		jButton1.setBounds(new Rectangle(380, 376, 80, 35));
 		jButton1.setText("添    加");				//设置添加按钮
 		
-		jButton2.setBounds(new Rectangle(273, 418, 127, 27));
+		jButton2.setBounds(new Rectangle(500, 376, 80, 35));
 		jButton2.setText("重    置");				//设置添加按钮
 		
-		jButton3.setBounds(new Rectangle(493, 418, 127, 27));
+		jButton3.setBounds(new Rectangle(620, 376, 80, 35));
 		jButton3.setText("删    除");				//设置添加按钮
 		
-		jButton4.setBounds(new Rectangle(713, 418, 127, 27));
+		jButton4.setBounds(new Rectangle(260, 376, 80, 35));
 		jButton4.setText("提    交");				//设置添加按钮
-		
-		
-		colnames.add("商品编码");		//向表格中添加表头信息
-	    colnames.add("条型码");
-	    colnames.add("类别编号");
-	    colnames.add("商品名称");
-	    colnames.add("零售价(元)");
-	    colnames.add("商品规格");
-	    colnames.add("计量单位");
-	    colnames.add("进货价");
-	    colnames.add("保质期(天)");
-	    colnames.add("备注");
+			
+		colnames.add("进货单号");			//向表格中添加表头信息
+        colnames.add("供货商");
+        colnames.add("货币");
+        colnames.add("付款方式");
+        colnames.add("付款金额");
+        colnames.add("支票号");
+        colnames.add("日期");
+        colnames.add("经手人");
+        colnames.add("制单人");
 	    colnames2.add(colnames1);
 	    jTable1 = Mytable.maketable(colnames2, colnames);
 	    jScrollPane1.getViewport().add(jTable1);
