@@ -12,11 +12,14 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.JTableHeader;
+
+import com.cs.means.GetTime;
 
 public class Stock extends JDialog {
 	
@@ -88,41 +91,52 @@ public class Stock extends JDialog {
 		jLabel6.setBounds(new Rectangle(411, 59, 75, 21));
 		jLabel7.setText("下单日期");				//设置下单日期标签
 		jLabel7.setBounds(new Rectangle(589, 28, 75, 21));
-		jLabel8.setText("付款期限(天)");				//设置下单日期标签
+		jLabel8.setText("付款期限(天)");			//设置付款期限标签
 		jLabel8.setBounds(new Rectangle(589, 59, 75, 21));
 		
 		jScrollPane1.setBounds(new Rectangle(14, 126, 765, 381));
 		
 		jTextField1.setBounds(new Rectangle(104, 28, 111, 21));		//设置选项文本框
+		jTextField1.setText("1");
 	    jTextField2.setBounds(new Rectangle(286, 28, 111, 21));
+	    jTextField1.setText("2");
 	    jTextField2.setEnabled(false);
 	    jTextField3.setBounds(new Rectangle(469, 28, 111, 21));
+	    jTextField3.setText("3");
 	    jTextField4.setBounds(new Rectangle(104, 59, 111, 21));
-	    jTextField4.setText("1");
+	    jTextField4.setText("4");
 	    jTextField5.setBounds(new Rectangle(286, 59, 111, 21));
+	    jTextField5.setText("5");
 	    jTextField5.setEnabled(false);
 	    jTextField6.setBounds(new Rectangle(469, 59, 111, 21));
+	    jTextField6.setText("6");
 	    jTextField6.setEnabled(false);
 	    jTextField7.setBounds(new Rectangle(645, 28, 128, 21));
+	    jTextField7.setText("7");
 	    jTextField7.setEnabled(false);
 	    jTextField8.setBounds(new Rectangle(666, 59, 107, 21));
+	    jTextField8.setText("8");
 	    Timer timer = new Timer();
 	    timer.schedule(new RemindTask(), 0, 1000);		//得到当前的时间
 	    
 		jButton1.setBounds(new Rectangle(137, 93, 83, 25));
-		jButton1.setText("确定");				//设置添加按钮
+		jButton1.setText("确定");				//设置确定按钮
+		jButton1.addActionListener(new Stock_Dialog_jButton1_actionAdapter(this));
 		
 		jButton2.setBounds(new Rectangle(244, 93, 83, 25));
-		jButton2.setText("删除");				//设置添加按钮
+		jButton2.setText("删除");				//设置删除按钮
+		jButton2.addActionListener(new Stock_Dialog_jButton2_actionAdapter(this));
 		
 		jButton3.setBounds(new Rectangle(351, 93, 83, 25));
-		jButton3.setText("提交");				//设置添加按钮
+		jButton3.setText("提交");             	//设置提交按钮
 		
 		jButton4.setBounds(new Rectangle(457, 93, 83, 25));
-		jButton4.setText("清空");				//设置添加按钮
+		jButton4.setText("清空");				//设置清空按钮
+		jButton4.addActionListener(new Stock_Dialog_jButton4_actionAdapter(this));
 		
 		jButton5.setBounds(new Rectangle(565, 93, 83, 25));
-		jButton5.setText("退出");				//设置添加按钮
+		jButton5.setText("退出");				//设置退出按钮
+		jButton5.addActionListener(new Stock_Dialog_jButton5_actionAdapter(this));
 		
 		//向表格中添加表头信息
 		colnames.add("商品编码");		
@@ -171,11 +185,115 @@ public class Stock extends JDialog {
 	}
 	class RemindTask extends TimerTask {
 		public void run() {
-			/*jTextField7.setText(GetT);*/
+			jTextField7.setText(GetTime.getTime());
 		}
 	}
+	
+	Vector inserAll = new Vector();		//所有商品的相关信息
 	public void jButton1_actionPerformed(ActionEvent e) {
 		jLabel1.setText("我爱你");	
+		if ((jTextField1.getText().length() == 0) || 
+				(jTextField1.getText().length() == 0) ||
+				(jTextField3.getText().length() == 0) ||
+				(jTextField5.getText().length() == 0) ||
+				(jTextField8.getText().length() == 0))  {
+				JOptionPane.showMessageDialog(this, "提交的数据不合法，请检查", "提示", JOptionPane.INFORMATION_MESSAGE);
+				return;
+			}
+		Vector insertone = new Vector();
+        insertone.add(jTextField1.getText());
+        insertone.add(jTextField2.getText());
+        insertone.add(jTextField3.getText());
+        insertone.add(jTextField4.getText());
+        insertone.add(jTextField5.getText());
+        insertone.add(jTextField6.getText());
+        insertone.add(jTextField7.getText());
+        insertone.add(jTextField8.getText());
+        inserAll.add(insertone);
+        jTable1 = Mytable.maketable(inserAll, colnames); //显示内容
+        jScrollPane1.getViewport().add(jTable1); //把表装入容器
 	}
+	
+	//删除按钮——Button2的功能实现
+	public void jButton2_actionPerformed(ActionEvent e) {
+		int row = jTable1.getSelectedRow();					//得到选中的行数
+		inserAll.remove(row);								//删除掉眩中行的数据
+		jTable1 = Mytable.maketable(inserAll, colnames);	//显示内容
+		jScrollPane1.getViewport().add(jTable1);
+	}
+	
+	//全部清空按钮——Button4的功能实现
+	public void jButton3_actionPerformed(ActionEvent e) {
+		
+	}	
+	
+	//全部清空按钮——Button4的功能实现
+	public void jButton4_actionPerformed(ActionEvent e) {
+		inserAll.removeAllElements(); 			//清空结果集
+		jTable1 = Mytable.maketable(inserAll, colnames);	//显示内容
+		jScrollPane1.getViewport().add(jTable1);
+	}
+	
+	//退出按钮——Button5的功能实现
+	public void jButton5_actionPerformed(ActionEvent e) {
+		this.setVisible(false);
+	}
+}
+
+
+class Stock_Dialog_jButton1_actionAdapter implements ActionListener {
+	private Stock adaptee;
+	Stock_Dialog_jButton1_actionAdapter(Stock adaptee) {
+        this.adaptee = adaptee;
+    }
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		adaptee.jButton1_actionPerformed(e);
+	}
+}
+
+class Stock_Dialog_jButton2_actionAdapter implements ActionListener {
+    private Stock adaptee;
+    Stock_Dialog_jButton2_actionAdapter(Stock adaptee) {
+        this.adaptee = adaptee;
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        adaptee.jButton2_actionPerformed(e);
+    }
+}
+
+class Stock_Dialog_jButton3_actionAdapter implements ActionListener {
+    private Stock adaptee;
+    Stock_Dialog_jButton3_actionAdapter(Stock adaptee) {
+        this.adaptee = adaptee;
+    }
+
+    public void actionPerformed(ActionEvent e) {
+       adaptee.jButton3_actionPerformed(e);
+    }
+}
+
+class Stock_Dialog_jButton4_actionAdapter implements ActionListener {
+    private Stock adaptee;
+    Stock_Dialog_jButton4_actionAdapter(Stock adaptee) {
+        this.adaptee = adaptee;
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        adaptee.jButton4_actionPerformed(e);
+    }
+}
+
+class Stock_Dialog_jButton5_actionAdapter implements ActionListener {
+    private Stock adaptee;
+    Stock_Dialog_jButton5_actionAdapter(Stock adaptee) {
+        this.adaptee = adaptee;
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        adaptee.jButton5_actionPerformed(e);
+    }
 }
 
