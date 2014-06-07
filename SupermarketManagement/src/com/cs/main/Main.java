@@ -5,7 +5,11 @@ import java.awt.Toolkit;
 
 import com.cs.base.Business;
 import com.cs.from.AddGoods;
+import com.cs.from.PaymentList;
+import com.cs.from.Stock;
 import com.cs.from.login;
+import com.cs.from.register;
+import com.cs.means.GetTime;
 
 public class Main {
 	boolean packFrame = false;
@@ -36,7 +40,12 @@ public class Main {
 		// TODO Auto-generated method stub
 //		Main main = new Main();
 /*		login login1 = new login();*/
-		AddGoods addGoods = new AddGoods();
+//		AddGoods addGoods = new AddGoods();
+//		new Stock();
+		new register();
+//		new Stock();
+//		GetTime getTime = new GetTime();
+//		System.out.println(getTime.getTime());
 /*		Business business = new Business();
 		business.getConnection();*/
 	}

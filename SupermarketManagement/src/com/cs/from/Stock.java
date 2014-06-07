@@ -140,15 +140,13 @@ public class Stock extends JDialog {
 		
 		//向表格中添加表头信息
 		colnames.add("商品编码");		
-	    colnames.add("条型码");
-	    colnames.add("类别编号");
 	    colnames.add("商品名称");
-	    colnames.add("零售价(元)");
-	    colnames.add("商品规格");
-	    colnames.add("计量单位");
-	    colnames.add("进货价");
-	    colnames.add("保质期(天)");
-	    colnames.add("备注");
+	    colnames.add("采购部门");
+	    colnames.add("数    量");
+	    colnames.add("单    价");
+	    colnames.add("金    额");
+	    colnames.add("下单日期");
+	    colnames.add("付款限额");
 	    colnames2.add(colnames1);
 	    
 	    jTable1 = Mytable.maketable(colnames2, colnames);
