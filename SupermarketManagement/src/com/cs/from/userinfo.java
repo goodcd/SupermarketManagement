@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import com.cs.means.GetTime;
 
-public class register extends JDialog {
+public class userinfo extends JDialog {
 	
 	//类的成员变量
 	JPanel panel1 = new JPanel();
@@ -51,7 +51,7 @@ public class register extends JDialog {
     
     JComboBox jComboBox1 = new JComboBox();		//复合框
 
-	public  register(Frame ower, String title, boolean modal) {
+	public  userinfo(Frame ower, String title, boolean modal) {
 		super(ower, title, modal);
 		try {
 			//在Java窗体正常关闭时调用，同时将整个程序从内存中清除。
@@ -63,11 +63,11 @@ public class register extends JDialog {
 			e.printStackTrace();
 		}
 	}
-	public register() {
+	public userinfo() {
 		// TODO Auto-generated constructor stub
-		this(new Frame(),"注册用户",false);
+		this(new Frame(),"查询用户",false);
 		this.setSize(500, 400);				//设置窗体大小
-		this.setLocation(450, 200);			//设置窗体位置
+		this.setLocation(300, 200);			//设置窗体位置
 		this.setVisible(true);				//显示窗口
 	}
 	private void jbInit() throws Exception {
@@ -78,7 +78,7 @@ public class register extends JDialog {
 		jLabel2.setBounds(new Rectangle(51, 93, 42, 15));
 		jLabel3.setText("证件号");			//设置证件号
 		jLabel3.setBounds(new Rectangle(51, 133, 42, 15));
-		jLabel4.setText("密码");				//设置密码
+		jLabel4.setText("级别");				//设置密码
 		jLabel4.setBounds(new Rectangle(51, 173, 42, 15));
 		jLabel5.setText("开卡日期");			//设置开卡日期
 		jLabel5.setBounds(new Rectangle(51, 213, 57, 15));
@@ -120,24 +120,12 @@ public class register extends JDialog {
 	    timer.schedule(new RemindTask(), 0, 1000);		//得到当前的时间
 	    
 		jButton1.setBounds(new Rectangle(75, 279, 83, 25));
-		jButton1.setText("注册");				//设置添加按钮
-		jButton1.addActionListener(new Dialog_enroll_jButton1_actionAdapter(this));
+		jButton1.setText("查询");				//设置查询按钮
+		jButton1.addActionListener(new Select_card_jButton1_actionAdapter(this));
 		
 		jButton2.setBounds(new Rectangle(225, 279, 83, 25));
-		jButton2.setText("查询");				//设置重置按钮
-		jButton2.addActionListener(new Dialog_enroll_jButton2_actionAdapter(this));
-		
-		jButton3.setBounds(new Rectangle(75, 319, 83, 25));
-		jButton3.setText("修改");				//设置删除按钮
-		jButton3.addActionListener(new Dialog_enroll_jButton3_actionAdapter(this));
-		
-		jButton4.setBounds(new Rectangle(225, 319, 83, 25));
-		jButton4.setText("删除");				//设置提交按钮
-		jButton4.addActionListener(new Dialog_enroll_jButton4_actionAdapter(this));
-		
-		jButton5.setBounds(new Rectangle(375, 319, 83, 25));
-		jButton5.setText("退出");				//设置提交按钮
-		jButton5.addActionListener(new Dialog_enroll_jButton5_actionAdapter(this));
+		jButton2.setText("取消");				//设置取消按钮
+		jButton2.addActionListener(new Select_card_jButton1_actionAdapter(this));
 		
 	    //初始化一个容器，并加入panel1
 		getContentPane().add(panel1);
@@ -176,49 +164,17 @@ public class register extends JDialog {
 	}
 	
 	Vector addAllData = new Vector(); 		//所有商品的相关信息
-	//button1 的 功能：添加商品的信息到表格中
 	public void jButton1_actionPerformed(ActionEvent e) {
-		if ((jTextField1.getText().length() == 0) || 
-			(jTextField2.getText().length() == 0) ||
-			(jTextField4.getText().length() == 0) ||
-			(jTextField5.getText().length() == 0) ||
-			(jTextField6.getText().length() == 0) ||
-			(jTextField7.getText().length() == 0) ||
-			(jTextField8.getText().length() == 0) ||
-			(jTextField9.getText().length() == 0) ) {
-			JOptionPane.showMessageDialog(this, "提交的数据不合法，请检查", "提示", JOptionPane.INFORMATION_MESSAGE);
-			return;
-		}
-		try {
-			Double dj = new Double(jTextField5.getText());		//零售价：定价
-			Double jhj = new Double(jTextField8.getText());		//进货价
-			Double bzq = new Double(jTextField9.getText());		//保质期
-		} catch (Exception ex) {
-			// TODO: handle exception
-			JOptionPane.showMessageDialog(this, "提交的数据不合法，请检查", "提示", JOptionPane.INFORMATION_MESSAGE);
-			return;
-		}
-		Vector addData = new Vector();			//单个商品的相关信息
-		addData.add(jTextField1.getText());		//添加商品编码
-		addData.add(jTextField2.getText());		//添加条形码
-		}
+		this.setVisible(false);
+	}
 	public void jButton2_actionPerformed(ActionEvent e) {
-		this.setVisible(false);
-	}
-	public void jButton3_actionPerformed(ActionEvent e) {
-		this.setVisible(false);
-	}
-	public void jButton4_actionPerformed(ActionEvent e) {
-		this.setVisible(false);
-	}
-	public void jButton5_actionPerformed(ActionEvent e) {
 		this.setVisible(false);
 	}
 }
 
-class Dialog_enroll_jButton1_actionAdapter implements ActionListener {
-	private register adaptee;
-	Dialog_enroll_jButton1_actionAdapter(register adaptee) {
+class Select_card_jButton1_actionAdapter implements ActionListener {
+	private userinfo adaptee;
+	Select_card_jButton1_actionAdapter(userinfo adaptee) {
         this.adaptee = adaptee;
     }
 	@Override
@@ -228,46 +184,13 @@ class Dialog_enroll_jButton1_actionAdapter implements ActionListener {
 	}
 }
 
-class Dialog_enroll_jButton2_actionAdapter implements ActionListener {
-    private register adaptee;
-    Dialog_enroll_jButton2_actionAdapter(register adaptee) {
+class Select_card_jButton2_actionAdapter implements ActionListener {
+    private userinfo adaptee;
+    Select_card_jButton2_actionAdapter(userinfo adaptee) {
         this.adaptee = adaptee;
     }
 
     public void actionPerformed(ActionEvent e) {
         adaptee.jButton2_actionPerformed(e);
-    }
-}
-
-class Dialog_enroll_jButton3_actionAdapter implements ActionListener {
-    private register adaptee;
-    Dialog_enroll_jButton3_actionAdapter(register adaptee) {
-        this.adaptee = adaptee;
-    }
-
-    public void actionPerformed(ActionEvent e) {
-        adaptee.jButton3_actionPerformed(e);
-    }
-}
-
-class Dialog_enroll_jButton4_actionAdapter implements ActionListener {
-    private register adaptee;
-    Dialog_enroll_jButton4_actionAdapter(register adaptee) {
-        this.adaptee = adaptee;
-    }
-
-    public void actionPerformed(ActionEvent e) {
-        adaptee.jButton4_actionPerformed(e);
-    }
-}
-
-class Dialog_enroll_jButton5_actionAdapter implements ActionListener {
-    private register adaptee;
-    Dialog_enroll_jButton5_actionAdapter(register adaptee) {
-        this.adaptee = adaptee;
-    }
-
-    public void actionPerformed(ActionEvent e) {
-        adaptee.jButton5_actionPerformed(e);
     }
 }
