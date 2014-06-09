@@ -5,10 +5,15 @@ import java.awt.Toolkit;
 
 import com.cs.base.Business;
 import com.cs.from.AddGoods;
+import com.cs.from.BackSale;
 import com.cs.from.PaymentList;
 import com.cs.from.Stock;
+import com.cs.from.enterstock;
+import com.cs.from.find_Sales;
 import com.cs.from.login;
 import com.cs.from.register;
+import com.cs.from.sale;
+import com.cs.from.userinfo;
 import com.cs.means.GetTime;
 
 public class Main {
@@ -42,7 +47,12 @@ public class Main {
 /*		login login1 = new login();*/
 //		AddGoods addGoods = new AddGoods();
 //		new Stock();
-		new register();
+//		new register();
+//		new userinfo();
+//		new BackSale();
+		new enterstock();
+//		new sale();
+//		new find_Sales();
 //		new Stock();
 //		GetTime getTime = new GetTime();
 //		System.out.println(getTime.getTime());

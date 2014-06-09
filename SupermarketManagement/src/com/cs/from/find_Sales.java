@@ -3,8 +3,14 @@ package com.cs.from;
 import java.awt.Frame;
 
 import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class find_Sales extends JDialog {
+	
+	JPanel panel1 = new JPanel();
+	JLabel jLabel1 = new JLabel();
+	JLabel jLabel2 = new JLabel();
 
 	public find_Sales(Frame ower, String title, boolean modal) {
 		super(ower, title, modal);

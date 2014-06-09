@@ -2,6 +2,7 @@ package com.cs.from;
 
 import java.awt.Frame;
 import java.awt.Rectangle;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Timer;
@@ -33,6 +34,8 @@ public class enterstock extends JDialog {
 	JLabel jLabel6 = new JLabel();
 	JLabel jLabel7 = new JLabel();
 	JLabel jLabel8 = new JLabel();
+	JLabel jLabel9 = new JLabel();
+	JLabel jLabel10 = new JLabel();
 
 	JTextField jTextField1 = new JTextField();
     JTextField jTextField2 = new JTextField();
@@ -60,8 +63,8 @@ public class enterstock extends JDialog {
 		try {
 			//在Java窗体正常关闭时调用，同时将整个程序从内存中清除。
 			setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-			jbInit();		//窗口的初始化函数
-			pack();
+			jbInit();		//初始化界面
+			pack();			//刷新界面
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -69,32 +72,38 @@ public class enterstock extends JDialog {
 	}
 	public enterstock() {
 		// TODO Auto-generated constructor stub
-		this(new Frame(),"采购表",false);
-		this.setSize(820, 570);
-		this.setLocation(100, 100);
+		this(new Frame(),"进/出库管理",false);
+		this.setSize(665, 500);
+//		this.setLocation(100, 100);
+		setLocationRelativeTo(getOwner());
 		this.setVisible(true);			//显示窗口
 	}
 	private void jbInit() throws Exception {
-		panel1.setLayout(null); 				//清除默认的布局
+		panel1.setLayout(null); 				//清除默认的布局管理
+//		this.getContentPane().setLayout(null); 	//清除所有的组件的信息
 		
-		jLabel1.setText("商品编码");				//设置商品编码名称大小和位置
+		jLabel1.setText("类别：");				//设置类别
 		jLabel1.setBounds(new Rectangle(37, 28, 75, 21));
-		jLabel2.setText("商品名称");				//设置商品名称标签
+		jLabel2.setText("时间：");				//设置时间
 		jLabel2.setBounds(new Rectangle(226, 28, 75, 21));
-		jLabel3.setText("采购部门");				//设置类别编号标签
+		jLabel3.setText("制单人：");				//设置制单人
 		jLabel3.setBounds(new Rectangle(411, 28, 75, 21));
-		jLabel4.setText("数        量");				//设置商品名称标签
+		jLabel4.setText("货单录入");				//设置货单录入
 		jLabel4.setBounds(new Rectangle(37, 59, 75, 21));
-		jLabel5.setText("单        价");				//设置单价标签
+		jLabel5.setText("商品编号：");				//设置单价标签
 		jLabel5.setBounds(new Rectangle(226, 59, 75, 21));
-		jLabel6.setText("金        额");				//设置金额标签
+		jLabel6.setText("数量：");				//设置金额标签
 		jLabel6.setBounds(new Rectangle(411, 59, 75, 21));
-		jLabel7.setText("下单日期");				//设置下单日期标签
+		jLabel7.setText("进货单价");				//设置下单日期标签
 		jLabel7.setBounds(new Rectangle(589, 28, 75, 21));
-		jLabel8.setText("付款期限(天)");			//设置付款期限标签
+		jLabel8.setText("仓库号：");			//设置付款期限标签
 		jLabel8.setBounds(new Rectangle(589, 59, 75, 21));
+		jLabel9.setText("仓库号：");			//设置付款期限标签
+		jLabel9.setBounds(new Rectangle(589, 59, 75, 21));
+		jLabel10.setText("仓库号：");			//设置付款期限标签
+		jLabel10.setBounds(new Rectangle(589, 59, 75, 21));
 		
-		jScrollPane1.setBounds(new Rectangle(14, 126, 765, 381));
+		jScrollPane1.setBounds(new Rectangle(24, 166, 600, 240));
 		
 		jTextField1.setBounds(new Rectangle(104, 28, 111, 21));		//设置选项文本框
 		jTextField1.setText("1");
@@ -119,34 +128,34 @@ public class enterstock extends JDialog {
 	    Timer timer = new Timer();
 	    timer.schedule(new RemindTask(), 0, 1000);		//得到当前的时间
 	    
-		jButton1.setBounds(new Rectangle(137, 93, 83, 25));
-		jButton1.setText("确定");				//设置确定按钮
+		jButton1.setBounds(new Rectangle(46, 409, 80, 30));
+		jButton1.setText("确认");				//设置确认按钮
 		jButton1.addActionListener(new Put_Out_Depot_jButton1_actionAdapter(this));
 		
-		jButton2.setBounds(new Rectangle(244, 93, 83, 25));
+		jButton2.setBounds(new Rectangle(166, 409, 80, 30));
 		jButton2.setText("删除");				//设置删除按钮
 		jButton2.addActionListener(new Put_Out_Depot_jButton2_actionAdapter(this));
 		
-		jButton3.setBounds(new Rectangle(351, 93, 83, 25));
-		jButton3.setText("提交");             	//设置提交按钮
+		jButton3.setBounds(new Rectangle(286, 409, 80, 30));
+		jButton3.setText("重置");             	//设置重置按钮
 		
-		jButton4.setBounds(new Rectangle(457, 93, 83, 25));
-		jButton4.setText("清空");				//设置清空按钮
+		jButton4.setBounds(new Rectangle(406, 409, 80, 30));
+		jButton4.setText("提交");				//设置提交按钮
 		jButton4.addActionListener(new Put_Out_Depot_jButton4_actionAdapter(this));
 		
-		jButton5.setBounds(new Rectangle(565, 93, 83, 25));
+		jButton5.setBounds(new Rectangle(526, 409, 80, 30));
 		jButton5.setText("退出");				//设置退出按钮
 		jButton5.addActionListener(new Put_Out_Depot_jButton5_actionAdapter(this));
 		
 		//向表格中添加表头信息
-		colnames.add("商品编码");		
-	    colnames.add("商品名称");
-	    colnames.add("采购部门");
-	    colnames.add("数    量");
-	    colnames.add("单    价");
-	    colnames.add("金    额");
-	    colnames.add("下单日期");
-	    colnames.add("付款限额");
+		colnames.add("编号");		
+	    colnames.add("数量");
+	    colnames.add("进货价");
+	    colnames.add("总金额");
+	    colnames.add("日期");
+	    colnames.add("仓库号");
+	    colnames.add("经手人");
+	    colnames.add("填单人");
 	    colnames2.add(colnames1);
 	    
 	    jTable1 = Mytable.maketable(colnames2, colnames);

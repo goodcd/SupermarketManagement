@@ -16,7 +16,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import com.cs.means.GetTime;
-
+/**
+ * 在工程中增加用户查询的userinfo类，
+ * 并且定义了该窗体需要的各种组件，
+ * 包括文本输入框、JLabel标签、JButton按钮、Panel容器和下拉列表等组件
+ * @author Miracle_Wong
+ *
+ */
 public class userinfo extends JDialog {
 	
 	//类的成员变量
@@ -119,11 +125,11 @@ public class userinfo extends JDialog {
 	    Timer timer = new Timer();
 	    timer.schedule(new RemindTask(), 0, 1000);		//得到当前的时间
 	    
-		jButton1.setBounds(new Rectangle(75, 279, 83, 25));
+		jButton1.setBounds(new Rectangle(105, 279, 83, 25));
 		jButton1.setText("查询");				//设置查询按钮
 		jButton1.addActionListener(new Select_card_jButton1_actionAdapter(this));
 		
-		jButton2.setBounds(new Rectangle(225, 279, 83, 25));
+		jButton2.setBounds(new Rectangle(305, 279, 83, 25));
 		jButton2.setText("取消");				//设置取消按钮
 		jButton2.addActionListener(new Select_card_jButton1_actionAdapter(this));
 		
