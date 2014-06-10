@@ -72,7 +72,7 @@ public class BackSale extends JDialog {
 		try {
 			//在Java窗体正常关闭时调用，同时将整个程序从内存中清除。
 			setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-			jbInit();		//窗口初始化
+			jbInit();		//初始化界面
 			pack();			//刷新界面
 		} catch (Exception e) {
 			// TODO: handle exception

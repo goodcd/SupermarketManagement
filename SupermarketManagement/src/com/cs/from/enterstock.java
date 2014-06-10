@@ -9,6 +9,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Vector;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -22,10 +23,20 @@ import javax.swing.table.JTableHeader;
 
 import com.cs.means.GetTime;
 
+/**
+ * 在工程中增加进货的enterstock类，
+ * 并且定义了该窗体需要的各种组件，
+ * 包括文本输入框、JLabel标签、JButton按钮、Panel容器和下拉列表等组件
+ * 定义了两个构造函数，一个带有参数，实现界面的初始化；
+ * 第二个没有参数，用来调用带有参数的构造函数。
+ * @author MiracleWong
+ *
+ */
 public class enterstock extends JDialog {
 	
 	//类的成员变量
 	JPanel panel1 = new JPanel();
+	//标签
 	JLabel jLabel1 = new JLabel();
 	JLabel jLabel2 = new JLabel();
 	JLabel jLabel3 = new JLabel();
@@ -36,7 +47,9 @@ public class enterstock extends JDialog {
 	JLabel jLabel8 = new JLabel();
 	JLabel jLabel9 = new JLabel();
 	JLabel jLabel10 = new JLabel();
-
+	JLabel jLabel11 = new JLabel();
+	JLabel jLabel12 = new JLabel();
+	//文本框
 	JTextField jTextField1 = new JTextField();
     JTextField jTextField2 = new JTextField();
     JTextField jTextField3 = new JTextField();
@@ -44,13 +57,16 @@ public class enterstock extends JDialog {
     JTextField jTextField5 = new JTextField();
     JTextField jTextField6 = new JTextField();
     JTextField jTextField7 = new JTextField();
-    JTextField jTextField8 = new JTextField();
-
+    //按钮
     JButton jButton1 = new JButton();
     JButton jButton2 = new JButton();
     JButton jButton3 = new JButton();
     JButton jButton4 = new JButton();
     JButton jButton5 = new JButton();
+    //下拉复选框
+    JComboBox jComboBox1 = new JComboBox();
+    JComboBox jComboBox2 = new JComboBox();
+    JComboBox jComboBox3 = new JComboBox();
     
     JScrollPane jScrollPane1 = new JScrollPane();
     JTable jTable1 = new JTable();
@@ -80,51 +96,63 @@ public class enterstock extends JDialog {
 	}
 	private void jbInit() throws Exception {
 		panel1.setLayout(null); 				//清除默认的布局管理
-//		this.getContentPane().setLayout(null); 	//清除所有的组件的信息
+
+		jLabel1.setBorder(BorderFactory.createEtchedBorder());
+		jLabel1.setBounds(new Rectangle(30, 7, 600, 36));
+		jLabel2.setText("类别：");			//类别
+		jLabel2.setBounds(new Rectangle(40, 20, 40, 15));
+		jLabel3.setText("时间：");			//时间
+		jLabel3.setBounds(new Rectangle(205, 20, 40, 15));
+		jLabel4.setText("操作员：");			//操作员
+		jLabel4.setBounds(new Rectangle(425, 20, 60, 15));
 		
-		jLabel1.setText("类别：");				//设置类别
-		jLabel1.setBounds(new Rectangle(37, 28, 75, 21));
-		jLabel2.setText("时间：");				//设置时间
-		jLabel2.setBounds(new Rectangle(226, 28, 75, 21));
-		jLabel3.setText("制单人：");				//设置制单人
-		jLabel3.setBounds(new Rectangle(411, 28, 75, 21));
-		jLabel4.setText("货单录入");				//设置货单录入
-		jLabel4.setBounds(new Rectangle(37, 59, 75, 21));
-		jLabel5.setText("商品编号：");				//设置单价标签
-		jLabel5.setBounds(new Rectangle(226, 59, 75, 21));
-		jLabel6.setText("数量：");				//设置金额标签
-		jLabel6.setBounds(new Rectangle(411, 59, 75, 21));
-		jLabel7.setText("进货单价");				//设置下单日期标签
-		jLabel7.setBounds(new Rectangle(589, 28, 75, 21));
-		jLabel8.setText("仓库号：");			//设置付款期限标签
-		jLabel8.setBounds(new Rectangle(589, 59, 75, 21));
-		jLabel9.setText("仓库号：");			//设置付款期限标签
-		jLabel9.setBounds(new Rectangle(589, 59, 75, 21));
-		jLabel10.setText("仓库号：");			//设置付款期限标签
-		jLabel10.setBounds(new Rectangle(589, 59, 75, 21));
+		jLabel5.setText("货单录入");				//货单录入
+		jLabel5.setBounds(new Rectangle(30, 45, 102, 26));
 		
-		jScrollPane1.setBounds(new Rectangle(24, 166, 600, 240));
+		jLabel6.setBorder(BorderFactory.createEtchedBorder());
+		jLabel6.setBounds(new Rectangle(30, 72, 600, 70));
+		jLabel7.setText("商品编号：");			//商品编号
+		jLabel7.setBounds(new Rectangle(40, 82, 80, 15));
+		jLabel8.setText("数        量：");			//数量
+		jLabel8.setBounds(new Rectangle(235, 82, 80, 15));
+		jLabel9.setText("进货单价：");			//进货单价
+		jLabel9.setBounds(new Rectangle(425, 82, 80, 15));
 		
-		jTextField1.setBounds(new Rectangle(104, 28, 111, 21));		//设置选项文本框
-		jTextField1.setText("1");
-	    jTextField2.setBounds(new Rectangle(286, 28, 111, 21));
-	    jTextField1.setText("2");
-	    jTextField2.setEnabled(false);
-	    jTextField3.setBounds(new Rectangle(469, 28, 111, 21));
-	    jTextField3.setText("3");
-	    jTextField4.setBounds(new Rectangle(104, 59, 111, 21));
-	    jTextField4.setText("4");
-	    jTextField5.setBounds(new Rectangle(286, 59, 111, 21));
-	    jTextField5.setText("5");
-	    jTextField5.setEnabled(false);
-	    jTextField6.setBounds(new Rectangle(469, 59, 111, 21));
-	    jTextField6.setText("6");
-	    jTextField6.setEnabled(false);
-	    jTextField7.setBounds(new Rectangle(645, 28, 128, 21));
-	    jTextField7.setText("7");
-	    jTextField7.setEnabled(false);
-	    jTextField8.setBounds(new Rectangle(666, 59, 107, 21));
-	    jTextField8.setText("8");
+		jLabel10.setText("仓  库  号：");				//仓库号
+		jLabel10.setBounds(new Rectangle(40, 112, 80, 15));
+		jLabel11.setText("总  金  额：");				//总金额
+		jLabel11.setBounds(new Rectangle(235, 112, 80, 15));
+		jLabel12.setText("经  手  人：");				//经手人
+		jLabel12.setBounds(new Rectangle(425, 112, 80, 15));
+		
+		jScrollPane1.setBounds(new Rectangle(30, 150, 600, 240));
+		
+		//设置文本框
+		jTextField1.setBounds(new Rectangle(250, 13, 150, 24));		
+		jTextField2.setBounds(new Rectangle(110, 78, 115, 24));
+	    jTextField3.setBounds(new Rectangle(305, 78, 95, 24));	    
+	    jTextField4.setBounds(new Rectangle(495, 78, 115, 24));
+
+	    jTextField5.setBounds(new Rectangle(305, 108, 95, 24));
+	    jTextField6.setBounds(new Rectangle(495, 108, 115, 24));
+	    
+	    jTextField7.setBounds(new Rectangle(666, 59, 107, 21));
+		
+		//下拉框
+	    jComboBox1.setBounds(new Rectangle(85, 13, 100, 24));
+	    jComboBox1.addItem("入库");
+        jComboBox1.addItem("出库");
+        
+        jComboBox2.setBounds(new Rectangle(490, 13, 100, 24));
+	    jComboBox2.addItem("付鹏");
+	    jComboBox2.addItem("汪涛");
+        jComboBox2.addItem("薛本众");
+        
+        jComboBox3.setBounds(new Rectangle(110, 108, 115, 24));
+        jComboBox3.addItem("CK0001");
+        jComboBox3.addItem("CK0002");
+        jComboBox3.addItem("CK0003");
+		
 	    Timer timer = new Timer();
 	    timer.schedule(new RemindTask(), 0, 1000);		//得到当前的时间
 	    
@@ -172,6 +200,10 @@ public class enterstock extends JDialog {
 		panel1.add(jLabel6);
 		panel1.add(jLabel7);
 		panel1.add(jLabel8);
+		panel1.add(jLabel9);
+		panel1.add(jLabel10);
+		panel1.add(jLabel11);
+		panel1.add(jLabel12);
 
 		panel1.add(jTextField1);
 		panel1.add(jTextField2);
@@ -180,65 +212,42 @@ public class enterstock extends JDialog {
 		panel1.add(jTextField5);
 		panel1.add(jTextField6);
 		panel1.add(jTextField7);
-		panel1.add(jTextField8);
 
 		panel1.add(jButton1);
 		panel1.add(jButton2);
 		panel1.add(jButton3);
 		panel1.add(jButton4);
 		panel1.add(jButton5);
-		
+		panel1.add(jComboBox1);
+		panel1.add(jComboBox2);
+		panel1.add(jComboBox3);
 		panel1.add(jScrollPane1);
 	}
 	class RemindTask extends TimerTask {
 		public void run() {
-			jTextField7.setText(GetTime.getTime());
+			jTextField1.setText(GetTime.getTime());
 		}
 	}
 	
 	Vector inserAll = new Vector();		//所有商品的相关信息
+	//确认按钮——Button1的功能实现
 	public void jButton1_actionPerformed(ActionEvent e) {
-		jLabel1.setText("我爱你");	
-		if ((jTextField1.getText().length() == 0) || 
-				(jTextField1.getText().length() == 0) ||
-				(jTextField3.getText().length() == 0) ||
-				(jTextField5.getText().length() == 0) ||
-				(jTextField8.getText().length() == 0))  {
-				JOptionPane.showMessageDialog(this, "提交的数据不合法，请检查", "提示", JOptionPane.INFORMATION_MESSAGE);
-				return;
-			}
-		Vector insertone = new Vector();
-        insertone.add(jTextField1.getText());
-        insertone.add(jTextField2.getText());
-        insertone.add(jTextField3.getText());
-        insertone.add(jTextField4.getText());
-        insertone.add(jTextField5.getText());
-        insertone.add(jTextField6.getText());
-        insertone.add(jTextField7.getText());
-        insertone.add(jTextField8.getText());
-        inserAll.add(insertone);
-        jTable1 = Mytable.maketable(inserAll, colnames); //显示内容
-        jScrollPane1.getViewport().add(jTable1); //把表装入容器
+		this.setVisible(false);
 	}
 	
 	//删除按钮——Button2的功能实现
 	public void jButton2_actionPerformed(ActionEvent e) {
-		int row = jTable1.getSelectedRow();					//得到选中的行数
-		inserAll.remove(row);								//删除掉眩中行的数据
-		jTable1 = Mytable.maketable(inserAll, colnames);	//显示内容
-		jScrollPane1.getViewport().add(jTable1);
+		this.setVisible(false);
 	}
 	
-	//全部清空按钮——Button4的功能实现
+	//重置按钮——Button3的功能实现
 	public void jButton3_actionPerformed(ActionEvent e) {
-		
+		this.setVisible(false);
 	}	
 	
-	//全部清空按钮——Button4的功能实现
+	//提交按钮——Button4的功能实现
 	public void jButton4_actionPerformed(ActionEvent e) {
-		inserAll.removeAllElements(); 			//清空结果集
-		jTable1 = Mytable.maketable(inserAll, colnames);	//显示内容
-		jScrollPane1.getViewport().add(jTable1);
+		this.setVisible(false);
 	}
 	
 	//退出按钮——Button5的功能实现
