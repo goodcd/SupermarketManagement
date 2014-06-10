@@ -1,5 +1,6 @@
 package com.cs.from;
 
+import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -8,25 +9,32 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Vector;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+
 import com.cs.means.GetTime;
 /**
- * 在工程中增加用户查询的userinfo类，
+ * 在工程中增加进货的BackSale类，
  * 并且定义了该窗体需要的各种组件，
  * 包括文本输入框、JLabel标签、JButton按钮、Panel容器和下拉列表等组件
- * @author Miracle_Wong
+ * 定义了两个构造函数，一个带有参数，实现界面的初始化；
+ * 第二个没有参数，用来调用带有参数的构造函数。
+ * @author MiracleWong
  *
  */
 public class BackSale extends JDialog {
 	
 	//类的成员变量
 	JPanel panel1 = new JPanel();
+	//标签
 	JLabel jLabel1 = new JLabel();
 	JLabel jLabel2 = new JLabel();
 	JLabel jLabel3 = new JLabel();
@@ -37,18 +45,13 @@ public class BackSale extends JDialog {
 	JLabel jLabel8 = new JLabel();
 	JLabel jLabel9 = new JLabel();
 	JLabel jLabel10 = new JLabel();
-	
+	//文本框
 	JTextField jTextField1 = new JTextField();
     JTextField jTextField2 = new JTextField();
     JTextField jTextField3 = new JTextField();
     JTextField jTextField4 = new JTextField();
     JTextField jTextField5 = new JTextField();
-    JTextField jTextField6 = new JTextField();
-    JTextField jTextField7 = new JTextField();
-    JTextField jTextField8 = new JTextField();
-    JTextField jTextField9 = new JTextField();
-    JTextField jTextField10 = new JTextField();
-    
+    //按钮
     JButton jButton1 = new JButton();
     JButton jButton2 = new JButton();
     JButton jButton3 = new JButton();
@@ -56,13 +59,20 @@ public class BackSale extends JDialog {
     JButton jButton5 = new JButton();
     
     JComboBox jComboBox1 = new JComboBox();		//复合框
+    JComboBox jComboBox2 = new JComboBox();		//复合框
+    
+    JScrollPane jScrollPane1 = new JScrollPane();
+    JTable jTable1 = new JTable();
+    Vector colnames = new Vector(); //表头
+    Vector colnames1 = new Vector(); //测试
+    Vector colnames2 = new Vector(); //测试
 
 	public  BackSale(Frame ower, String title, boolean modal) {
 		super(ower, title, modal);
 		try {
 			//在Java窗体正常关闭时调用，同时将整个程序从内存中清除。
 			setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-			jbInit();		//窗口的初始化函数
+			jbInit();		//窗口初始化
 			pack();			//刷新界面
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -71,67 +81,87 @@ public class BackSale extends JDialog {
 	}
 	public BackSale() {
 		// TODO Auto-generated constructor stub
-		this(new Frame(),"查询用户",false);
-		this.setSize(500, 400);				//设置窗体大小
-		this.setLocation(300, 200);			//设置窗体位置
+		this(new Frame(),"进/退货维护",false);
+		this.setSize(600, 500);				//设置窗体大小
+		setLocationRelativeTo(getOwner());	//窗体居中
 		this.setVisible(true);				//显示窗口
 	}
 	private void jbInit() throws Exception {
 		panel1.setLayout(null); 			//清除布局格式
-		jLabel1.setText("卡号");				//设置卡号
-		jLabel1.setBounds(new Rectangle(51, 53, 42, 15));
-		jLabel2.setText("持卡人");			//设置持卡人
-		jLabel2.setBounds(new Rectangle(51, 93, 42, 15));
-		jLabel3.setText("证件号");			//设置证件号
-		jLabel3.setBounds(new Rectangle(51, 133, 42, 15));
-		jLabel4.setText("级别");				//设置密码
-		jLabel4.setBounds(new Rectangle(51, 173, 42, 15));
-		jLabel5.setText("开卡日期");			//设置开卡日期
-		jLabel5.setBounds(new Rectangle(51, 213, 57, 15));
-		jLabel6.setText("类型");				//设置类型
-		jLabel6.setBounds(new Rectangle(261, 53, 42, 15));
-		jLabel7.setText("期限");				//设置期限
-		jLabel7.setBounds(new Rectangle(261, 93, 42, 15));
-		jLabel8.setText("积分");				//设置积分
-		jLabel8.setBounds(new Rectangle(261, 133, 42, 15));
-		jLabel9.setText("折扣率");			//设置折扣率
-		jLabel9.setBounds(new Rectangle(261, 173, 42, 15));
-		jLabel10.setText("备注");			//设置备注标签
-		jLabel10.setBounds(new Rectangle(261, 213, 42, 15));
+
+		jLabel1.setBorder(BorderFactory.createEtchedBorder());
+		jLabel1.setBounds(new Rectangle(29, 7, 536, 36));
+		jLabel2.setText("类别：");			//类别
+		jLabel2.setBounds(new Rectangle(35, 20, 40, 15));
+		jLabel3.setText("时间：");			//时间
+		jLabel3.setBounds(new Rectangle(185, 20, 40, 15));
+		jLabel4.setText("操作员：");			//操作员
+		jLabel4.setBounds(new Rectangle(385, 20, 60, 15));
 		
+		jLabel5.setBorder(BorderFactory.createEtchedBorder());
+		jLabel5.setBounds(new Rectangle(29, 42, 536, 36));
+		jLabel6.setText("商品编号：");			//商品编号
+		jLabel6.setBounds(new Rectangle(35, 55, 80, 15));
+		jLabel7.setText("数量：");			//数量
+		jLabel7.setBounds(new Rectangle(235, 55, 40, 15));
+		jLabel8.setText("进货单价：");			//进货单价
+		jLabel8.setBounds(new Rectangle(385, 55, 80, 15));
+		jLabel9.setText("备注：");			//备注
+		jLabel9.setBounds(new Rectangle(35, 365, 42, 15));
 		
-		jTextField1.setBounds(new Rectangle(109, 48, 132, 27));		//设置选项文本框
-	    jTextField2.setBounds(new Rectangle(109, 88, 132, 27));
-	    jTextField3.setBounds(new Rectangle(109, 128, 132, 27));
-	    jTextField4.setBounds(new Rectangle(109, 168, 132, 27));
-	    jTextField5.setBounds(new Rectangle(114, 208, 127, 27));
-//	    jTextField6.setBounds(new Rectangle(319, 48, 132, 27));
-	    jComboBox1.setBounds(new Rectangle(319, 48, 132, 27));
-	    jComboBox1.addItem("普通会员");
-        jComboBox1.addItem("收银员");
-        jComboBox1.addItem("管理员");
-        
-	    jTextField7.setBounds(new Rectangle(319, 88, 132, 27));
-	    jTextField7.setText("1年");
-	    jTextField7.setEnabled(false);
-	    jTextField8.setBounds(new Rectangle(319, 128, 132, 27));
-	    jTextField8.setText("0");
-	    jTextField8.setEnabled(false);
-	    jTextField9.setBounds(new Rectangle(319, 168, 132, 27));
-	    jTextField9.setText("90%");
-	    jTextField9.setEnabled(false);
-	    jTextField10.setBounds(new Rectangle(334, 208, 117, 27));
+		jScrollPane1.setBounds(new Rectangle(29, 77, 537, 275));
+		
+		//设置文本框
+	    jTextField1.setBounds(new Rectangle(225, 13, 150, 24));
+	    jTextField2.setBounds(new Rectangle(100, 48, 125, 24));
+	    jTextField3.setBounds(new Rectangle(275, 48, 100, 24));
+	    jTextField4.setBounds(new Rectangle(455, 48, 100, 24));
+	    jTextField5.setBounds(new Rectangle(70, 350, 496, 54));
 	    
+	    //下拉框
+	    jComboBox1.setBounds(new Rectangle(75, 13, 100, 24));
+	    jComboBox1.addItem("进货");
+        jComboBox1.addItem("退货");
+        
+        jComboBox2.setBounds(new Rectangle(455, 13, 100, 24));
+	    jComboBox2.addItem("付鹏");
+	    jComboBox2.addItem("汪涛");
+        jComboBox2.addItem("薛本众");
+        
 	    Timer timer = new Timer();
 	    timer.schedule(new RemindTask(), 0, 1000);		//得到当前的时间
 	    
-		jButton1.setBounds(new Rectangle(105, 279, 83, 25));
-		jButton1.setText("查询");				//设置查询按钮
+		jButton1.setBounds(new Rectangle(46, 409, 80, 30));
+		jButton1.setText("确认");				//确认
 		jButton1.addActionListener(new JoinAndExceed_jButton1_actionAdapter(this));
 		
-		jButton2.setBounds(new Rectangle(305, 279, 83, 25));
-		jButton2.setText("取消");				//设置取消按钮
+		jButton2.setBounds(new Rectangle(146, 409, 80, 30));
+		jButton2.setText("删除");				//删除
 		jButton2.addActionListener(new JoinAndExceed_jButton2_actionAdapter(this));
+		
+		jButton3.setBounds(new Rectangle(246, 409, 80, 30));
+		jButton3.setText("取消");             	//取消
+		jButton3.addActionListener(new JoinAndExceed_jButton3_actionAdapter(this));
+		
+		jButton4.setBounds(new Rectangle(346, 409, 80, 30));
+		jButton4.setText("提交");				//提交
+		jButton4.addActionListener(new JoinAndExceed_jButton4_actionAdapter(this));
+		
+		jButton5.setBounds(new Rectangle(446, 409, 80, 30));
+		jButton5.setText("查询");				//查询
+		jButton5.addActionListener(new JoinAndExceed_jButton5_actionAdapter(this));
+		
+		//向表格中添加表头信息
+		colnames.add("商品编号");
+        colnames.add("商品名称");
+        colnames.add("数量");
+        colnames.add("进货价");
+        colnames.add("日期");
+        colnames.add("金额");
+        colnames2.add(colnames1);
+        
+		jTable1 = Mytable.maketable(colnames2, colnames);
+		jScrollPane1.getViewport().add(jTable1);
 		
 	    //初始化一个容器，并加入panel1
 		getContentPane().add(panel1);
@@ -151,21 +181,18 @@ public class BackSale extends JDialog {
 		panel1.add(jTextField3);
 		panel1.add(jTextField4);
 		panel1.add(jTextField5);
-		panel1.add(jTextField6);
-		panel1.add(jTextField7);
-		panel1.add(jTextField8);
-		panel1.add(jTextField9);
-		panel1.add(jTextField10);
 		panel1.add(jButton1);
 		panel1.add(jButton2);
 		panel1.add(jButton3);
 		panel1.add(jButton4);
 		panel1.add(jButton5);
-		panel1.add(jComboBox1);		
+		panel1.add(jComboBox1);
+		panel1.add(jComboBox2);	
+		panel1.add(jScrollPane1);
 	}
 	class RemindTask extends TimerTask {
 		public void run() {
-			jTextField5.setText(GetTime.getTime());
+			jTextField1.setText(GetTime.getTime());
 		}
 	}
 	
@@ -173,7 +200,20 @@ public class BackSale extends JDialog {
 	public void jButton1_actionPerformed(ActionEvent e) {
 		this.setVisible(false);
 	}
+	
 	public void jButton2_actionPerformed(ActionEvent e) {
+		this.setVisible(false);
+	}
+	
+	public void jButton3_actionPerformed(ActionEvent e) {
+		this.setVisible(false);
+	}
+	
+	public void jButton4_actionPerformed(ActionEvent e) {
+		this.setVisible(false);
+	}
+	
+	public void jButton5_actionPerformed(ActionEvent e) {
 		this.setVisible(false);
 	}
 }
@@ -193,6 +233,39 @@ class JoinAndExceed_jButton1_actionAdapter implements ActionListener {
 class JoinAndExceed_jButton2_actionAdapter implements ActionListener {
     private BackSale adaptee;
     JoinAndExceed_jButton2_actionAdapter(BackSale adaptee) {
+        this.adaptee = adaptee;
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        adaptee.jButton2_actionPerformed(e);
+    }
+}
+
+class JoinAndExceed_jButton3_actionAdapter implements ActionListener {
+    private BackSale adaptee;
+    JoinAndExceed_jButton3_actionAdapter(BackSale adaptee) {
+        this.adaptee = adaptee;
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        adaptee.jButton2_actionPerformed(e);
+    }
+}
+
+class JoinAndExceed_jButton4_actionAdapter implements ActionListener {
+    private BackSale adaptee;
+    JoinAndExceed_jButton4_actionAdapter(BackSale adaptee) {
+        this.adaptee = adaptee;
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        adaptee.jButton2_actionPerformed(e);
+    }
+}
+
+class JoinAndExceed_jButton5_actionAdapter implements ActionListener {
+    private BackSale adaptee;
+    JoinAndExceed_jButton5_actionAdapter(BackSale adaptee) {
         this.adaptee = adaptee;
     }
 
