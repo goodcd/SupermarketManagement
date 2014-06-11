@@ -3,6 +3,8 @@ package com.cs.from;
 import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Rectangle;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
@@ -14,6 +16,19 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+
+import com.cs.from.BackSale.RemindTask;
+import com.cs.means.GetTime;
+
+/**
+ * 在工程中增加商品销售的sale类，
+ * 并且定义了该窗体需要的各种组件，
+ * 包括文本输入框、JLabel标签、JButton按钮、Panel容器和下拉列表等组件
+ * 定义了两个构造函数，一个带有参数，实现界面的初始化；
+ * 第二个没有参数，用来调用带有参数的构造函数。
+ * @author MiracleWong
+ *
+ */
 
 public class sale extends JDialog {
 
@@ -91,6 +106,9 @@ public class sale extends JDialog {
 		jTable1 = Mytable.maketable(colnames2, colnames);
 		jScrollPane1.getViewport().add(jTable1);
 		
+		Timer timer = new Timer();
+	    timer.schedule(new RemindTask(), 0, 1000);		//得到当前的时间
+		
 		//设置标签
 		jLabel1.setText("商品编号");
 		jLabel1.setBounds(new Rectangle(30, 450, 60, 20));
@@ -115,7 +133,7 @@ public class sale extends JDialog {
 		jTextField1.setBounds(new Rectangle(100, 450, 150, 20));
 	    jTextField2.setBounds(new Rectangle(305, 450, 80, 20));
 	    jTextField3.setBounds(new Rectangle(435, 450, 100, 20));
-	    jTextField4.setBounds(new Rectangle(630, 450, 100, 20));
+	    jTextField4.setBounds(new Rectangle(630, 450, 140, 20));
 	    jTextField5.setBounds(new Rectangle(100, 480, 150, 20));
 	    jTextField6.setBounds(new Rectangle(305, 480, 80, 20));
 	    jTextField7.setBounds(new Rectangle(100, 516, 120, 30));
@@ -156,6 +174,10 @@ public class sale extends JDialog {
 		panel1.add(jButton1);
 		panel1.add(jButton2);
 		panel1.add(jButton3);
-
+	}
+	class RemindTask extends TimerTask {
+		public void run() {
+			jTextField4.setText(GetTime.getTime());
+		}
 	}
 }

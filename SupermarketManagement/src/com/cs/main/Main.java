@@ -51,8 +51,8 @@ public class Main {
 //		new userinfo();
 //		new BackSale();
 //		new enterstock();
-		new sale();
-//		new find_Sales();
+//		new sale();
+		new find_Sales();
 //		new Stock();
 //		GetTime getTime = new GetTime();
 //		System.out.println(getTime.getTime());
