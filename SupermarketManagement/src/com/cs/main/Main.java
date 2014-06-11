@@ -50,8 +50,8 @@ public class Main {
 //		new register();
 //		new userinfo();
 //		new BackSale();
-		new enterstock();
-//		new sale();
+//		new enterstock();
+		new sale();
 //		new find_Sales();
 //		new Stock();
 //		GetTime getTime = new GetTime();
