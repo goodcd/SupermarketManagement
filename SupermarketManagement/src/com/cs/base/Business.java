@@ -3,14 +3,18 @@ package com.cs.base;
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.SQLException;
-
+/**
+ * 添加类
+ * @author MiracleWong
+ *
+ */
 public class Business {
 	private static final String DRIVER = "com.mysql.jdbc.Driver";		//驱动固定代码
 
 	private static final String URL = "jdbc:mysql://localhost:3306/cs";	//URL
 
 	private static final String user  = "root";							//用户名
-	private static final String password = "wr";						//密码
+	private static final String password = "**";						//密码
 	//连接数据库的函数
 	public static Connection getConnection() {
 		java.sql.Connection conn = null;

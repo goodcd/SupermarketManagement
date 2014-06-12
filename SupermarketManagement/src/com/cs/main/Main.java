@@ -25,7 +25,7 @@ public class Main {
 		if (packFrame) {
 			frame.pack();		//让窗口显示合适的大小
 		} else {
-			frame.validate();	//刷新窗体组件的信息
+			frame.validate();	//刷新窗体组件
 		}
 		Dimension scSize = Toolkit.getDefaultToolkit().getScreenSize();	
 		Dimension fSize = frame.getSize();				//获得窗口的大小
