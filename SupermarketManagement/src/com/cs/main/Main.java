@@ -7,6 +7,7 @@ import com.cs.base.Business;
 import com.cs.from.AddGoods;
 import com.cs.from.BackSale;
 import com.cs.from.PaymentList;
+import com.cs.from.Put_outdepot;
 import com.cs.from.Stock;
 import com.cs.from.enterstock;
 import com.cs.from.find_Sales;
@@ -25,7 +26,7 @@ public class Main {
 		if (packFrame) {
 			frame.pack();		//让窗口显示合适的大小
 		} else {
-			frame.validate();	//刷新窗体组件
+			frame.validate();	//刷新窗体
 		}
 		Dimension scSize = Toolkit.getDefaultToolkit().getScreenSize();	
 		Dimension fSize = frame.getSize();				//获得窗口的大小
@@ -43,21 +44,23 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+//		Business business = new Business();
+//		business.getConnection();
 //		Main main = new Main();
-/*		login login1 = new login();*/
 //		AddGoods addGoods = new AddGoods();
+		new Put_outdepot();
 //		new Stock();
 //		new register();
 //		new userinfo();
 //		new BackSale();
 //		new enterstock();
 //		new sale();
-		new find_Sales();
+//		new find_Sales();
 //		new Stock();
 //		GetTime getTime = new GetTime();
 //		System.out.println(getTime.getTime());
-/*		Business business = new Business();
-		business.getConnection();*/
+//		Business business = new Business();
+//		business.getConnection();
 	}
 
 }

@@ -1,5 +1,13 @@
 package com.cs.means;
-
+/**
+ * 注：类是面向对象的编程的核心，为了便于对数据库进行控制，
+ * 应该为项目中的每个数据库表建立一个独立的类，类的成员变量对应数据库表中的列，
+ * 成员函数对应成员变量和对表的操作。这样，可以和操作类一样灵活的操作数据表了
+ * 建立user类
+ * 用于对数据库中表user进行操作
+ * @author MiracleWong
+ *
+ */
 public class user {
 	
 	//类的成员变量
@@ -14,6 +22,7 @@ public class user {
 	private String integral;
 	private String agio;
 	private String remark;
+	//构造函数
 	public user() {
 		// TODO Auto-generated constructor stub
 	}

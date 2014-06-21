@@ -16,23 +16,25 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import com.cs.main.MainFrame;
+import com.cs.means.find_goods_info;
 
 
 /**
- * 系统登录功能模块
+ * 系统登录功能模块——login
  * 功能：增加系统的安全性，设置只有通过系统身份验证的用户才能使用本系统
- * @author Miracle_Wong
+ * @author MiracleWong
  *
  */
 public class login extends JDialog{
 	//声明
+	sale form;
 	JPanel jPanel1 = new JPanel();
-	JTextField jTextField1 = new JTextField();
 	JLabel jLabel1 = new JLabel();
 	JLabel jLabel2 = new JLabel();
 	JLabel jLabel3 = new JLabel();
 	JButton jButton1 = new JButton();
 	JButton jButton2 = new JButton();
+	JTextField jTextField1 = new JTextField();
 	JPasswordField jPasswordField1 = new JPasswordField();
 	
 	public  login(Frame ower, String title, boolean modal) {
@@ -40,7 +42,7 @@ public class login extends JDialog{
 		try {
 			//在Java窗体正常关闭时调用，同时将整个程序从内存中清除。
 			setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-			jbInit();		//窗口的初始化函数
+			jbInit();		//窗口初始化
 			pack();
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -51,7 +53,7 @@ public class login extends JDialog{
 		// TODO Auto-generated constructor stub
 		this(new Frame(),"管理员登录",false);
 		this.setSize(400, 300);
-		this.setLocation(300, 200);
+		this.setLocationRelativeTo(getOwner());			//窗体居中
 		this.setVisible(true);			//显示窗口
 	}
 	
@@ -59,12 +61,12 @@ public class login extends JDialog{
 	private void jbInit() throws Exception{
 		jPanel1.setLayout(null);	//去掉所有默认布局
 		//设置显示区域
-		jTextField1.setBounds(new Rectangle(158, 87, 101, 25));
+		jTextField1.setBounds(new Rectangle(158, 87, 100, 25));
 		jLabel1.setText("用户名");
 		jLabel1.setBounds(new Rectangle(78, 87, 49, 25));
 		jLabel2.setText("密    码");
 		jLabel2.setBounds(new Rectangle(76, 124, 49, 25));
-		jLabel3.setFont(new java.awt.Font("宋体", Font.PLAIN, 20));	//设置字体
+//		jLabel3.setFont(new java.awt.Font("宋体", Font.PLAIN, 20));	//设置字体
 		jLabel3.setText("管理员登录");
 		jLabel3.setBounds(new Rectangle(145, 30, 113, 27));
 		jButton1.setText("登    录");
@@ -72,7 +74,7 @@ public class login extends JDialog{
 		jButton1.addActionListener(new Admin_jButton1_actionAdapter(this));		//注册监听器
 		jButton2.setText("取    消");
 		jButton2.setBounds(new Rectangle(210, 206, 83, 25));
-		jButton2.addActionListener(new Admin_jButton1_actionAdapter(this));		//注册监听器
+		jButton2.addActionListener(new Admin_jButton2_actionAdapter(this));		//注册监听器
 		
 		jPasswordField1.setBounds(new Rectangle(158, 125, 101, 25));
 		//初始化一个容器，并加入jPanel1
@@ -82,9 +84,11 @@ public class login extends JDialog{
 		jPanel1.add(jLabel1);
 		jPanel1.add(jTextField1);
 		jPanel1.add(jLabel2);
+		jPanel1.add(jPasswordField1);
+		
 		jPanel1.add(jButton1);
 		jPanel1.add(jButton2);
-		jPanel1.add(jPasswordField1);
+		
 	}
 	//jButton1的监听事件
 	public void jButton1_acactionPerformed(ActionEvent e) {
@@ -92,13 +96,14 @@ public class login extends JDialog{
 		Vector user = new Vector();
         String name = jTextField1.getText();
         String password = jPasswordField1.getText();
-//      user = find_goods_info.Select_User(name, password);
+        user = find_goods_info.Select_User(name, password);
         if (user.size() != 0) {
             this.setVisible(false);
             MainFrame mainFrame = new MainFrame();
             mainFrame.setVisible(true);
             mainFrame.setLocation(50, 50);
-//          form.setVisible(false);
+            form.setVisible(false);			//设置窗体不可见
+            System.out.println("连接成功");
         }
         else {
             JOptionPane.showMessageDialog(this, "用户名或密码不正确,请重新输入", "错误",

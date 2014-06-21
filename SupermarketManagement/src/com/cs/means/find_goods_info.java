@@ -6,7 +6,7 @@ import java.sql.*;
 import com.cs.base.Business;
 
 public class find_goods_info {
-	
+	//需要执行的SQL语句
 	private static final String select1 =
 			"select * from Merchandise where SortNumber=?";
 	private static final String select2 =
@@ -35,7 +35,7 @@ public class find_goods_info {
 	public find_goods_info() {
 		// TODO Auto-generated constructor stub
 	}
-	
+	//管理员登录
 	public static Vector Select_User(String name, String password) {
         Vector vcUser = new Vector();
         Connection conn = null;

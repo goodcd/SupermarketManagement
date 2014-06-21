@@ -155,7 +155,6 @@ public class MainFrame extends JFrame{
 		//将菜单栏加入到窗体
 		setJMenuBar(jMenuBar1);
 		
-		
 		/*以下是显示树形结构的部分*/
 		
 		/**设置树状图形**/
@@ -181,7 +180,6 @@ public class MainFrame extends JFrame{
 		DefaultMutableTreeNode search2 = new DefaultMutableTreeNode("按商品编号查询");
 		DefaultMutableTreeNode search3 = new DefaultMutableTreeNode("按商品条形码查询");
 		DefaultMutableTreeNode search4 = new DefaultMutableTreeNode("按商品类别查询");
-
 
 		DefaultMutableTreeNode inout = new DefaultMutableTreeNode("入库/出库");
 		DefaultMutableTreeNode addexit = new DefaultMutableTreeNode("进/退货");
@@ -222,14 +220,10 @@ public class MainFrame extends JFrame{
 		search4.add(sort5);
 		search4.add(sort6);
 		
-		
-		
-		
 		//刷新树形结构
 		jTree1 = new JTree(root);
 		//添加监听器
 		
-
 		//设置滚动区域的显示范围
 		jScrollPane1.setBounds(new Rectangle(13, 25, 152, 435));
 		jScrollPane2.setBounds(new Rectangle(167, 25, 750, 435));
